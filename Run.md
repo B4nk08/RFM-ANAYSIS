@@ -1,18 +1,24 @@
-python3 scripts/1_load_data.py
-python3 scripts/2_explore_data.py
-python3 scripts/3_statistics.py
-python3 scripts/4_handle_missing.py
-python3 scripts/5_scatter_plots.py
-python3 scripts/6_correlation_heatmap.py
+# วิธีรัน (รันจากโฟลเดอร์ rfm-analysis)
 
-# (ทางเลือก) รายงาน HTML
-python3 scripts/7_make_report.py
+# ----- Preprocessing -----
+python3 scripts/01_prepare_data.py       # 1) data ชื่ออะไร มาจากไหน
+python3 scripts/02_show_data.py          # 2) 10 แถวแรก + จำนวนข้อมูล + แต่ละ field
+python3 scripts/03_check_dtypes.py       # 3) ชนิดข้อมูล
+python3 scripts/04_check_missing.py      # 4) missing + outliers (bar chart, boxplot)
+python3 scripts/05_handle_missing.py     # 5) วิธีจัดการ missing → data/cleaned_data.csv
+python3 scripts/06_data_summary.py       # 6) สรุปข้อมูลที่เหลือ
 
-# ----- หาคู่สินค้า + จัดโปรซื้อคู่ -----
-python3 scripts/8_market_basket.py      # หาคู่สินค้า (Support/Confidence/Lift)
-python3 scripts/9_pair_by_month.py      # คู่ไหนฮิตเดือนไหน
-python3 scripts/10_promo_and_model.py   # แนะนำโปร + โมเดลเบาๆ
+# ----- Data Visualization -----
+python3 scripts/07_scatter_plot.py       # 1) Scatter Quantity vs Price (ปกติ + log)
+python3 scripts/08_correlation_heatmap.py  # 2) Correlation heatmap
 
-# ----- แอปเลือกสินค้า / เดือน (เปิดในเบราว์เซอร์) -----
-# pip3 install streamlit --break-system-packages
-streamlit run scripts/app_promo.py
+# ----- Model -----
+python3 scripts/09_train_model.py        # 1) เทรน Gradient Boosting ด้วยข้อมูลทั้งหมด
+python3 scripts/10_monthly_promo.py      # 2) โปรสินค้าขายดี (เดือนล่าสุด)
+python3 scripts/10_monthly_promo.py 2011-11   #    เลือกเดือนเอง
+
+# ----- Future Work -----
+python3 scripts/11_future_work.py
+
+# ----- หน้าเว็บรวมทุกขั้นตอน (หน้าเดียว) -----
+streamlit run app.py
